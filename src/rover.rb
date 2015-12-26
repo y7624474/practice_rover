@@ -1,16 +1,19 @@
 require_relative 'direction'
 require_relative 'location'
+
 include Direction
 class Rover
 
-  def initialize(location, command)
+  def initialize(plateauborder, location, command)
+    @plateauborder = plateauborder
     @location = location
     @command = command
   end
 
   def rover_execute
     for command_index in 0.."#{@command}".size
-      rover_command(@location.towards,command_index)
+      rover_command(@location.towards, command_index)
+      return false if !alert
     end
     return @location
   end
@@ -30,7 +33,7 @@ class Rover
     end
   end
 
-  def rover_command(towards,command_index)
+  def rover_command(towards, command_index)
     case @command[command_index]
       when 'L'
         index = direction.index(towards)
@@ -44,11 +47,20 @@ class Rover
         if index != 0
           @location.towards = direction[index-1]
         else
-          @location.towards  = direction[3]
+          @location.towards = direction[3]
         end
       when 'M'
         rover_move
       else
+    end
+  end
+
+  def alert
+    if (@location.x < 0 || @location.x > @plateauborder.x || @location.y < 0 || @location.y > @plateauborder.y)
+      puts "Alert! rover is over border"
+      return false
+    else
+      return true
     end
   end
 
