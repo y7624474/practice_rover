@@ -33,10 +33,9 @@ class Rover
   def rover_command(towards,command_index)
     case @command[command_index]
       when 'L'
-        puts direction
         index = direction.index(towards)
         if index != 3
-          @location.get = direction[index+1]
+          @location.towards = direction[index+1]
         else
           @location.towards = direction[0]
         end
