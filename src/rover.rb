@@ -2,6 +2,7 @@ require_relative 'direction'
 require_relative 'location'
 
 include Direction
+
 class Rover
 
   def initialize(plateauborder, location, command)
@@ -37,17 +38,17 @@ class Rover
     case @command[command_index]
       when 'L'
         index = direction.index(towards)
-        if index != 3
+        if index != LAST
           @location.towards = direction[index+1]
         else
-          @location.towards = direction[0]
+          @location.towards = direction[FIRST]
         end
       when 'R'
         index = direction.index(towards)
-        if index != 0
+        if index != FIRST
           @location.towards = direction[index-1]
         else
-          @location.towards = direction[3]
+          @location.towards = direction[LAST]
         end
       when 'M'
         rover_move
