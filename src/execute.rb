@@ -18,7 +18,6 @@ input_plateauborder = PlateauBorder.new(borderx.chomp.to_i,bordery.chomp.to_i)
 input_location = Location.new(coordinatex.chomp.to_i,coordinatey.chomp.to_i,coordinatetowards.chomp)
 
 input_command = command.chomp
-
 rover = Rover.new(input_plateauborder,input_location,input_command)
 result = rover.rover_execute()
 puts result

@@ -8,6 +8,7 @@ include Locations
 describe Rover do
   let(:plateau) {PlateauBorder .new(5,5)}
   let(:location) {Location.new(1,2,'N')}
+
   it 'change direction when input single command' do
     direction_command = 'L'
     rover = Rover.new(plateau,location,direction_command)
